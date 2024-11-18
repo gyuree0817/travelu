@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행 계획 프로그램</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            background-color: #39D1C7;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        h2 {
+            color: #39D1C7;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #39D1C7;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #35B8B0;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll(".tab-content");
+            tabs.forEach(tab => tab.classList.remove("active"));
+            document.getElementById(tabId).classList.add("active");
+        }
+
+        function searchDestination() {
+            const destination = document.getElementById("destination").value;
+            if (destination) {
+                const url = `https://www.google.com/search?q=${destination}`;
+                window.open(url, "_blank");
+            }
+        }
+
+        function openMofaSite() {
+            window.open("https://www.mofa.go.kr", "_blank");
+        }
+
+        function openSupportLink() {
+            const url = "https://www.google.com/search?q=대학생+해외여행+지원금";
+            window.open(url, "_blank");
+        }
+    </script>
+</head>
+<body>
+
+    <h1>여행 계획 프로그램</h1>
+
+    <div class="menu">
+        <button onclick="showTab('plan')">여행 계획하기</button>
+        <button onclick="showTab('resources')">자료실</button>
+        <button onclick="showTab('info')">안내 및 링크</button>
+    </div>
+
+    <div id="plan" class="tab-content">
+        <h2>여행 계획하기</h2>
+        <p>가고 싶은 여행지를 입력하세요:</p>
+        <input type="text" id="destination" placeholder="예: 프랑스 파리">
+        <button onclick="searchDestination()">검색하기</button>
+    </div>
+
+    <div id="resources" class="tab-content">
+        <h2>자료실</h2>
+        <button onclick="alert('비행기 그림 저장 기능은 개발 중입니다.')">비행기 사진 저장</button>
+        <h3>지금까지 간 여행 리스트</h3>
+        <ul>
+            <li>프랑스 파리</li>
+            <li>영국 런던</li>
+            <li>미국 LA</li>
+        </ul>
+    </div>
+
+    <div id="info" class="tab-content">
+        <h2>안내 및 링크</h2>
+        <button onclick="openMofaSite()">외교부 비상 연락처</button>
+        <button onclick="openSupportLink()">지원 안내 페이지</button>
+    </div>
+
+    <script>
+        // 초기 탭 설정
+        document.getElementById("plan").classList.add("active");
+    </script>
+
+</body>
+</html>
